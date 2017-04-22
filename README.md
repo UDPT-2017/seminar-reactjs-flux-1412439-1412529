@@ -3,10 +3,10 @@
 **Tên đề tài** là một repository trong đề tài tìm hiểu của lớp Ứng dụng phân tán.
 
 Thành viên:
-* [ ] **MSSV1** Tên sinh viên 1 (tên tài khoản github)
-* [ ] **MSSV2** Tên sinh viên 2 (tên tài khoản github)
+* [ ] **1412439** Nguyễn Hoàng Quân (NguyenHoangQuan2503)
+* [ ] **1412529** Bạch Thiên Quốc Minh Thông (meo bach)
 
-URL: **Link github page**
+URL: **http://nguyenhoangquan2503.github.io**
 
 ## Yêu cầu
 
