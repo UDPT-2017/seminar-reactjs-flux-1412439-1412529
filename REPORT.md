@@ -160,7 +160,7 @@ export default App;
 Cấu trúc cơ bản của kiến trúc này là gồm model(ở đây là store) và view. Dữ liệu trong react chỉ truyền theo 1 hướng đơn. Khi có 1 sự kiện gì đó xảy ra,sự kiện đó sẽ được xử lý và phân phối cho store,store sẽ dựa vào đó để quyết định có thay đổi trạng thái hay không nếu có thì sẽ thay đổi trạng thái của cái gì và sau khi thay đổi, nó sẽ thông báo cho view controller để view controller lên xác nhận và lấy trạng thái mới về để update.Khác với.mô hình trước đây, điển hình là two-way binding khi dữ liệu ở view hoặc model thay đổi thì cái còn lại sẽ tiếp hành update để đồng bộ dữ liệu, nên đôi khi sẽ không biết dữ liệu di chuyển từ đâu đến đâu,khó khăn trong việc sửa lỗi, trong khi đó mô hình của react sẽ đảm bảo an toàn và dễ dàng hơn trong việc kiểm tra cũng như dự đoán dữ liệu.
 
 
-## 2.Flux
+# 2. Flux
 #### Flux là một kiến trúc được Facebook sử dụng bên trong khi làm việc với React. Nó không phải là một framework hay thư viện, đơn giản nó là một kiến trúc mới bổ sung cho React và khái niệm về Unindirectional Data Flow.
 
 #### Flux và ReactJs đều được tạo ra bởi Facebook nhắm giải quyết những vấn đề mà Facebook đã gặp phải:
