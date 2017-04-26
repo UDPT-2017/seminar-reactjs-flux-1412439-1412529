@@ -1,4 +1,4 @@
-# BÁO CÁO ĐỀ TÀI TÌM HIỂU
+﻿# BÁO CÁO ĐỀ TÀI TÌM HIỂU
 
 
 
@@ -32,3 +32,164 @@ Flux có khá nhiều điểm kế thừa từ kiến trúc MVC, bên cạnh đ�
 + Undirectional Flow (dữ liệu một chiều - one way data binding): mỗi Action đều đi qua Dispatcher, một Store không thể thay đổi trực tiếp các Store khác(vì mỗi Store không trang bị method Setter), tương tự các Action và View khác cũng vậy(đối với MVC thì thông thường sẽ là Flow 2 chiều).
 + Data Flow: làm nên nét đặc trưng của Flux, được định nghĩa và mang tính bắt buộc thông qua Dispatcher. Trong MVC thì Data Flow không mang tính bắt buộc và mỗi mô hình MVC lại có cách cài đặt khác nhau.
  
+
+# 3. Reacjs
+ReactJs là thư viện của ngôn ngữ javascript, được dành cho phát triển front-end cho web và được xây dựng bởi Facebook, Reactjs cho phép bạn xây dựng ứng dụng trên web và mobile. Reactjs cho phép xây dựng các UI component với khả năng tái sử dụng cao, giúp lập trình đơn giản nhưng hiệu quả hơn và cũng có thể xây dựng các ứng dụng native với React Native.
+
+#### Lợi thế của React:
++ Sử dụng virtual DOM với javascript object,sẽ cải thiện tốc độ thực thi app vì virtual DOM thực thi sẽ nhah hơn regular DOM.
++ Có thể dùng ở server và client.
++ Component và Data pattern làm cho ứng dụng dễ đọc hơn và bảo trì tốt hơn.
++ Có thể sử dụng chung với các frame work khác.
++ Các đặc trưng của react js.
++ JSX:(Javascript syntax extension).
++ Có cú pháp tương tự HTML,với JSX bạn có thể tạo ra các component với độ linh hoạt và đa dạng như HTML, ngoài ra, JSX còn có 1 số lợi thế: Chạy nhanh hơn mã javascript bình thường vì nó thực hiện tối ưu trong quá trình biên dịch code javascript, chạy an toàn và hầu hết các lỗi có thể bắt được trong quá trình biên dịch, nếu bạn có nền tảng HTML,CSS cơ bản thì khi làm việc với JSX sẽ tốt hơn,dễ dàng.
+
+Ví dụ:
+```javascript
+import React from 'react';
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+            Hello World!!!
+         </div>
+      );
+   }
+}
+export default App;
+```
+
+Tuy nhiên cũng có 1 số vấn đề cần lưu ý khi làm việc với JSX vì nó không hoàn toàn giống với HTML:
++ Khi khai báo các thành phần của 1 component bằng JSX thì cần phải bao tất cả các thành phần đó lại bằng 1 thẻ container
+```javascript
+import React from 'react';
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+            <h1>Header</h1>
+            <h2>Content</h2>
+            <p>This is the content!!!</p>
+         </div>
+      );
+   }
+}
+export default App;
+```
++ Có thể thực hiện biểu thức javascript bên trong JSX:
+```javascript
+import React from 'react';
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+            <h1>{1+1}</h1>
+         </div>
+      );
+   }
+}
+export default App;
+```
+
+#### COMPONENT:
+Là thành phần quan trọng nhất của Reactjs, nó giúp bạn xây dựng giao diện độc lập,có khả năng tái sử dụng cao.
+Có 2 cách phổ biến để tạo 1 component:
++ Sử dụng React.createClass
+```javascript
+import React from 'react';
+
+const Contacts = React.createClass({
+  render() {
+    return (
+      <div></div>
+    );
+  }
+});
+
+export default Contacts;
+```
+
++ Sử dụng React.Component(trong ES6 class)
+
+``` javascript
+import React from 'react';
+
+class Contacts extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div></div>
+    );
+  }
+}
+
+export default Contacts;
+```
+
+Về bản chất 2 cách tạo trên là tương đương nhau. Đều cần viết lại 1 số thành phần quan trọng bên trong để hình thành 1 component với đầy đủ tính chất và đáp ứng được yêu cầu người dùng, cụ thể:
++ Hàm:
+```javascript
+render(){
+ return()
+}
+```
+Ở trong cặp dấu ngoặc tròn của return là view bạn sẽ vẽ ra giao diện khi component được thêm vào giao diện người dùng. Ngoài ra 1 component khi được tạo có thể có 1 số thành phần quan trọng khác:
++ State: Đây là nơi chứa dữ liệu của component,dữ liệu này có thể thay đổi.Khi sử dụng state,nên tối thiểu số lượng state của 1 component cũng như tối thiểu số lượng component chứa state.Nếu nhiều component cần dữ liệu từ state bạn nên tạo 1 component container để giữ state cho tất cả các component còn lại.
+
+```javascript
+import React from 'react';
+
+class App extends React.Component {
+   constructor(props) {
+      super(props);
+		
+      this.state = {
+         header: "Header from state...",
+         "content": "Content from state..."
+      }
+   }
+	
+   render() {
+      return (
+         <div>
+            <h1>{this.state.header}</h1>
+            <h2>{this.state.content}</h2>
+         </div>
+      );
+   }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+
++ Props: Props cũng là nơi chứa dữ liệu, nó khác với state ở chỗ dữ liệu của state có thể thay đổi còn props thì không. Container nên chứa state để dễ dàng thay đổi cập nhật, còn child component thì chỉ nên chứa dữ liệu dạng props và thông qua state của parent nó để thay đổi.
+
+```javascript
+import React from 'react';
+
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+            <h1>{this.props.headerProp}</h1>
+            <h2>{this.props.contentProp}</h2>
+         </div>
+      );
+   }
+}
+
+export default App;
+
+ReactDOM.render(<App headerProp = "Header from props..." contentProp = "Content
+   from props..."/>, document.getElementById('app'));
+
+export default App;
+```
+
+#### UNDIRECTIONAL DATA FLOW
+Cấu trúc cơ bản của kiến trúc này là gồm model(ở đây là store) và view. Dữ liệu trong react chỉ truyền theo 1 hướng đơn. Khi có 1 sự kiện gì đó xảy ra,sự kiện đó sẽ được xử lý và phân phối cho store,store sẽ dựa vào đó để quyết định có thay đổi trạng thái hay không nếu có thì sẽ thay đổi trạng thái của cái gì và sau khi thay đổi, nó sẽ thông báo cho view controller để view controller lên xác nhận và lấy trạng thái mới về để update.Khác với.mô hình trước đây, điển hình là two-way binding khi dữ liệu ở view hoặc model thay đổi thì cái còn lại sẽ tiếp hành update để đồng bộ dữ liệu, nên đôi khi sẽ không biết dữ liệu di chuyển từ đâu đến đâu,khó khăn trong việc sửa lỗi, trong khi đó mô hình của react sẽ đảm bảo an toàn và dễ dàng hơn trong việc kiểm tra cũng như dự đoán dữ liệu.
+ 
+
