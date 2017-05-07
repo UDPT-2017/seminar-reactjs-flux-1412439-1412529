@@ -38,23 +38,31 @@
     var hotkey=ReactBootstrap.hotkey;
 
     class FirstComponent extends React.Component {
+
+
+
+
+
+
+
        render() {
           return (
               <div>
               <h1 className='class1'>2048</h1>
-              <Score/>
+              <Score value={this.props.value}/>
               <h1 className='text'>Play game 2048</h1>
-              <Button bsSize="large " className='bt_newgame'>New Game</Button>
+
               </div>
           );
        }
     }
     class Score extends React.Component {
+
        render() {
           return (
               <div className='score'>
               <div>Score</div>
-              <div>76</div>
+              <div>{this.props.value}</div>
               </div>
 
 
@@ -67,8 +75,9 @@
       super(props);
 
       this.state = {
-         color:[["#ccccb3","#ccccb3","#ccccb3","#ccccb3"],["brown","#ccccb3","#ccccb3","#ccccb3"],["#ccccb3","#ccccb3","#ccccb3","#ccccb3"],["#ccccb3","#ccccb3","#ccccb3","#ccccb3"]],
-          key:[[0,0,0,0],[2,0,0,0],[0,0,0,0],[0,0,0,0]]
+         color:[["#ccccb3","#ccccb3","#ccccb3","#ccccb3"],["#ccccb3","#ccccb3","#ccccb3","#ccccb3"],["#ccccb3","#ccccb3","#ccccb3","#ccccb3"],["#ccccb3","#ccccb3","#ccccb3","#ccccb3"]],
+          key:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+          value:0
 
       }
 
@@ -76,18 +85,45 @@
       this.Down = this.Down.bind(this);
       this.Left = this.Left.bind(this);
       this.Right = this.Right.bind(this);
+      this.new_game=this.new_game.bind(this);
       //this.Right = this.Right.bind(this);
 
 
    }
    /////////////////////////////////////////////////
+   new_game(){
+     var a=this.state.key.slice();
+
+     var c=this.state.color.slice();
+     for(var i=0;i<4;i++){
+       for(var j=0;j<4;j++){
+         a[i][j]=0;
+         c[i][j]='#ccccb3';
+       }
+     }
+
+
+     var x=Math.floor((Math.random() * 4) + 0);
+     var y=Math.floor((Math.random() * 4) + 0);
+     a[x][y]=2;
+     console.log(a);
+     c[x][y]='brown';
+
+
+
+     this.setState({
+    key:a,
+    color:c,
+    value:0
+     })
+   }
+   //////////////////////////////////////////////////
     Up() {
 
      var a=this.state.key.slice();
 
      var c=this.state.color.slice();
-     console.log(a);
-     console.log(c);
+     var score=this.state.value;
      var flag=false;
      ///////////////////////////////////
      var choitiep=false;
@@ -118,7 +154,7 @@
              a[k][i]=a[k+1][i];
              c[k][i]=c[k+1][i];
            }
-           console.log(x);
+
            a[x][i]=0;
            c[x][i]="#ccccb3";
            x=x-1;
@@ -126,13 +162,19 @@
          }
 
        }
-       console.log(a);
-       console.log(c);
+
+
        //xet cac truong hop
        var check=false;
        if(a[0][i]==a[1][i]&&a[2][i]==a[3][i]){
          a[0][i]=a[0][i]*2;
+         if(a[0][i]!=0){
+           score=score+1;
+         }
          a[1][i]=a[2][i]*2;
+         if(a[1][i]!=0){
+           score=score+1;
+         }
          c[1][i]=c[2][i];
          a[2][i]=a[3][i]=0;
          c[2][i]="#ccccb3"
@@ -141,6 +183,9 @@
        }
        if(a[0][i]==a[1][i]&&a[2][i]!=a[3][i]&&check==false){
          a[0][i]=a[0][i]*2;
+         if(a[0][i]!=0){
+           score=score+1;
+         }
          a[1][i]=a[2][i];
          c[1][i]=c[2][i];
          a[2][i]=a[3][i];
@@ -152,20 +197,25 @@
        }
        if(a[0][i]!=a[1][i]&&a[2][i]==a[3][i]&&a[1][i]!=a[2][i]&&check==false){
          a[2][i]=a[2][i]*2;
+         if(a[2][i]!=0){
+           score=score+1;
+         }
          a[3][i]=0;
          c[3][i]="#ccccb3";
          check=true;
        }
        if(a[0][i]!=a[1][i]&&a[1][i]==a[2][i]&&check==false){
          a[1][i]=a[1][i]*2;
+         if(a[1][i]!=0){
+           score=score+1;
+         }
          a[2][i]=a[3][i];
          c[2][i]=c[3][i];
          a[3][i]=0;
          c[3][i]="#ccccb3";
        }
      }
-     console.log(a);
-     console.log(c);
+
      //////////////////////////////////////
      var flag=false;
      for(var i=0;i<4;i++){
@@ -195,10 +245,13 @@
      }
      i++;
    }
+
+
    this.setState({key:a,
-                  color:c
+                  color:c,
+                  value:score
    });
-   console.log(this.state.key);
+   console.log("score"+score);
  }
  else{
    console.log("thua");
@@ -211,10 +264,9 @@
 
    Down() {
      var a=this.state.key.slice();
-
+     var score=this.state.value;
      var c=this.state.color.slice();
-     console.log(a);
-     console.log(c);
+
      var flag=false;
      ///////////////////////////////////
      var choitiep=false;
@@ -245,7 +297,7 @@
              a[k][i]=a[k-1][i];
              c[k][i]=c[k-1][i];
            }
-           console.log(x);
+
            a[x][i]=0;
            c[x][i]="#ccccb3";
            x=x+1;
@@ -253,13 +305,19 @@
          }
 
        }
-       console.log(a);
-       console.log(c);
+
        //xet cac truong hop
+
        var check=false;
        if(a[3][i]==a[2][i]&&a[1][i]==a[0][i]){
          a[3][i]=a[3][i]*2;
+         if(a[3][i]!=0){
+           score=score+1;
+         }
          a[2][i]=a[1][i]*2;
+         if(a[2][i]!=0){
+           score=score+1;
+         }
          c[2][i]=c[1][i];
          a[1][i]=a[0][i]=0;
          c[1][i]="#ccccb3"
@@ -268,6 +326,9 @@
        }
        if(a[3][i]==a[2][i]&&a[1][i]!=a[0][i]&&check==false){
          a[3][i]=a[3][i]*2;
+         if(a[3][i]!=0){
+           score=score+1;
+         }
          a[2][i]=a[1][i];
          c[2][i]=c[1][i];
          a[1][i]=a[0][i];
@@ -279,20 +340,25 @@
        }
        if(a[3][i]!=a[2][i]&&a[1][i]==a[0][i]&&a[2][i]!=a[1][i]&&check==false){
          a[1][i]=a[1][i]*2;
+         if(a[1][i]!=0){
+           score=score+1;
+         }
          a[0][i]=0;
          c[0][i]="#ccccb3";
          check=true;
        }
        if(a[3][i]!=a[2][i]&&a[2][i]==a[1][i]&&check==false){
          a[2][i]=a[2][i]*2;
+         if(a[2][i]!=0){
+           score=score+1;
+         }
          a[1][i]=a[0][i];
          c[1][i]=c[0][i];
          a[0][i]=0;
          c[0][i]="#ccccb3";
        }
      }
-     console.log(a);
-     console.log(c);
+
      //////////////////////////////////////
      var flag=false;
      for(var i=0;i<4;i++){
@@ -323,12 +389,13 @@
      i++;
    }
    this.setState({key:a,
-                  color:c
+                  color:c,
+                  value:score
    });
-   console.log(this.state.key);
+   console.log("score"+score);
  }
  else{
-   console.log("thua");
+
  }
 
  }
@@ -336,10 +403,9 @@
   }
   Right() {
     var a=this.state.key.slice();
-
+    var score=this.state.value;
     var c=this.state.color.slice();
-    console.log(a);
-    console.log(c);
+
     var flag=false;
     ///////////////////////////////////
     var choitiep=false;
@@ -366,58 +432,77 @@
 
         if(a[i][j]==0){
           for( var k=j;k>0;k--){
-
-            a[i][k]=a[i][k-1];
             c[i][k]=c[i][k-1];
+            a[i][k]=a[i][k-1];
+
           }
-          console.log(x);
-          a[i][x]=0;
+
           c[i][x]="#ccccb3";
+          a[i][x]=0;
+
           x=x+1;
           j=j+1;
         }
 
       }
-      console.log(a);
-      console.log(c);
+
       //xet cac truong hop
       var check=false;
+
       if(a[i][3]==a[i][2]&&a[i][1]==a[i][0]){
         a[i][3]=a[i][3]*2;
-        a[i][2]=a[i][1]*2;
+        if(a[i][3]!=0){
+          score=score+1;
+        }
         c[i][2]=c[i][1];
-        a[i][1]=a[i][0]=0;
+        a[i][2]=a[i][1]*2;
+        if(a[i][2]!=0){
+          score=score+1;
+        }
         c[i][1]="#ccccb3"
         c[i][0]="#ccccb3";
+        a[i][1]=a[i][0]=0;
+
         check==true;
       }
       if(a[i][3]==a[i][2]&&a[i][1]!=a[i][0]&&check==false){
         a[i][3]=a[i][3]*2;
-        a[i][2]=a[i][1];
+        if(a[i][3]!=0){
+          score=score+1;
+        }
         c[i][2]=c[i][1];
-        a[i][1]=a[i][0];
+        a[i][2]=a[i][1];
         c[i][1]=c[i][0];
+        a[i][1]=a[i][0];
+          c[i][0]="#ccccb3";
         a[i][0]=0;
-        c[i][0]="#ccccb3";
+
         check=true;
 
       }
       if(a[i][3]!=a[i][2]&&a[i][1]==a[i][0]&&a[i][2]!=a[i][1]&&check==false){
         a[i][1]=a[i][1]*2;
-        a[i][0]=0;
+        if(a[i][1]!=0){
+          score=score+1;
+        }
         c[i][0]="#ccccb3";
+        a[i][0]=0;
+
         check=true;
       }
       if(a[i][3]!=a[i][2]&&a[i][2]==a[i][1]&&check==false){
         a[i][2]=a[i][2]*2;
+        if(a[i][2]!=0){
+          score=score+1;
+        }
+          c[i][1]=c[i][0];
         a[i][1]=a[i][0];
-        c[i][1]=c[i][0];
+      c[i][0]="#ccccb3";
         a[i][0]=0;
-        c[i][0]="#ccccb3";
+
       }
     }
-    console.log(a);
-    console.log(c);
+
     //////////////////////////////////////
     var flag=false;
     for(var i=0;i<4;i++){
@@ -448,22 +533,22 @@
     i++;
   }
   this.setState({key:a,
-                 color:c
+                 color:c,
+                 value:score
   });
-  console.log(this.state.key);
+  console.log("score"+score);
 }
 else{
-  console.log("thua");
+
 }
 
 }
  }
  Left() {
    var a=this.state.key.slice();
-
+   var score=this.state.value;
    var c=this.state.color.slice();
-   console.log(a);
-   console.log(c);
+
    var flag=false;
    ///////////////////////////////////
    var choitiep=false;
@@ -490,58 +575,77 @@ else{
 
        if(a[i][j]==0){
          for( var k=j;k<3;k++){
-
-           a[i][k]=a[i][k+1];
            c[i][k]=c[i][k+1];
+           a[i][k]=a[i][k+1];
+
          }
-         console.log(x);
-         a[i][k]=0;
+
          c[i][k]="#ccccb3";
+         a[i][k]=0;
+
          x=x-1;
          j=j-1;
        }
 
      }
-     console.log(a);
-     console.log(c);
+
      //xet cac truong hop
      var check=false;
+
      if(a[i][0]==a[i][1]&&a[i][2]==a[i][3]){
        a[i][0]=a[i][0]*2;
-       a[i][1]=a[i][2]*2;
+       if(a[i][0]!=0){
+         score=score+1;
+       }
        c[i][1]=c[i][2];
-       a[i][2]=a[i][3]=0;
+       a[i][1]=a[i][2]*2;
+       if(a[i][1]!=0){
+         score=score+1;
+       }
        c[i][2]="#ccccb3"
        c[i][3]="#ccccb3";
+       a[i][2]=a[i][3]=0;
+
        check==true;
      }
      if(a[i][0]==a[i][1]&&a[i][2]!=a[i][3]&&check==false){
        a[i][0]=a[i][0]*2;
-       a[i][1]=a[i][2];
+       if(a[i][0]!=0){
+         score=score+1;
+       }
        c[i][1]=c[i][2];
+       a[i][1]=a[i][2];
+        c[i][2]=c[i][3];
        a[i][2]=a[i][3];
-       c[i][2]=c[i][3];
+      c[i][3]="#ccccb3";
        a[i][3]=0;
-       c[i][3]="#ccccb3";
+
        check=true;
 
      }
      if(a[i][0]!=a[i][1]&&a[i][2]==a[i][3]&&a[i][1]!=a[i][2]&&check==false){
        a[i][2]=a[i][2]*2;
-       a[i][3]=0;
+       if(a[i][2]!=0){
+         score=score+1;
+       }
        c[i][3]="#ccccb3";
+       a[i][3]=0;
+
        check=true;
      }
      if(a[i][0]!=a[i][1]&&a[i][1]==a[i][2]&&check==false){
        a[i][1]=a[i][1]*2;
-       a[i][2]=a[i][3];
+       if(a[i][1]!=0){
+         score=score+1;
+       }
        c[i][2]=c[i][3];
-       a[i][3]=0;
+       a[i][2]=a[i][3];
        c[i][3]="#ccccb3";
+       a[i][3]=0;
+
      }
    }
-   console.log(a);
-   console.log(c);
+
    //////////////////////////////////////
    var flag=false;
    for(var i=0;i<4;i++){
@@ -572,12 +676,13 @@ else{
    i++;
  }
  this.setState({key:a,
-                color:c
+                color:c,
+                value:score
  });
- console.log(this.state.key);
+ console.log("score: "+score);
 }
 else{
- console.log("thua");
+
 }
 
 }
@@ -588,7 +693,10 @@ else{
 ////////////////////////////////////////////////////
        render() {
           return (
+
           <div className='second_container'>
+            <FirstComponent value={this.state.value}/>
+            <Button bsSize="large " className='bt_newgame' onClick = {this.new_game}>New Game</Button>
           <Cell value={this.state.key[0][0]} color={this.state.color[0][0]}/>
           <Cell value={this.state.key[0][1]} color={this.state.color[0][1]}/>
           <Cell value={this.state.key[0][2]} color={this.state.color[0][2]}/>
@@ -608,6 +716,7 @@ else{
           <div className="div_button">
           <div className="bt1">
         <Button bsStyle="primary" onClick = {this.Up}>&#8593;</Button>
+
           </div>
           <div className="bt2">
           <div className="bt3">
@@ -638,7 +747,7 @@ else{
        render() {
           return (
               <div >
-              <FirstComponent/>
+
               <SecondComponent/>
               </div>
 
