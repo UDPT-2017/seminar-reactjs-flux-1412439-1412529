@@ -6,7 +6,7 @@ Thành viên:
 * [ ] **1412439** Nguyễn Hoàng Quân (NguyenHoangQuan2503)
 * [ ] **1412529** Bạch Thiên Quốc Minh Thông (meo bach)
 
-URL: **http://nguyenhoangquan2503.github.io**
+URL github page: **http://nguyenhoangquan2503.github.io**
 
 ## Yêu cầu
 
@@ -15,23 +15,23 @@ Sinh viên check vào các mục bên dưới và ghi mã sinh viên đã làm v
 Yêu cầu **GIT**
 * [ ] Có sử dụng GIT.
 * [ ] Sử dụng GIT theo Centralized Workflow.
-* [ ] Sử dụng GIT theo Feature Branch Workflow.
+* [*] Sử dụng GIT theo Feature Branch Workflow.
 * [ ] Sử dụng GIT theo Gitflow Workflow.
 
 Yêu cầu **bắt buộc**
-* [ ] Source code demo
-* [ ] Slide thuyết trình
-* [ ] Tạo github page để viết lại báo cáo cho nội dung đề tài tìm hiểu
+* [*] Source code demo
+* [*] Slide thuyết trình
+* [*] Tạo github page để viết lại báo cáo cho nội dung đề tài tìm hiểu
 
 Các **nội dung lý thuyết** dự định tìm hiểu. Nhóm liệt kê các nội dung đã làm được vào bên dưới và check vào các nội dung đã tìm hiểu được.
-* [ ] Nội dung 1
-* [ ] Nội dung 2
+* [*] Tổng quan về ReactJS
+* [*] Kiến trúc Flux
 
 Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hiện. Nhóm check vào các chức năng đã làm
-* [ ] Chức năng 1
-* [ ] Chức năng 2
+* [*] Làm game 2048 theo kiến trúc Flux, sử dụng ReactJS
 
 ## Demo
+URL game: **https://group-1412529-1412439.herokuapp.com**
 
 Link ảnh GIF demo ứng dụng:
 
