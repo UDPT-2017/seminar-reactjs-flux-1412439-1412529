@@ -15,20 +15,20 @@ Sinh viên check vào các mục bên dưới và ghi mã sinh viên đã làm v
 Yêu cầu **GIT**
 * [ ] Có sử dụng GIT.
 * [ ] Sử dụng GIT theo Centralized Workflow.
-* [*] Sử dụng GIT theo Feature Branch Workflow.
+* [+] Sử dụng GIT theo Feature Branch Workflow.
 * [ ] Sử dụng GIT theo Gitflow Workflow.
 
 Yêu cầu **bắt buộc**
-* [*] Source code demo
-* [*] Slide thuyết trình
-* [*] Tạo github page để viết lại báo cáo cho nội dung đề tài tìm hiểu
+* [+] Source code demo
+* [+] Slide thuyết trình
+* [+] Tạo github page để viết lại báo cáo cho nội dung đề tài tìm hiểu
 
 Các **nội dung lý thuyết** dự định tìm hiểu. Nhóm liệt kê các nội dung đã làm được vào bên dưới và check vào các nội dung đã tìm hiểu được.
-* [*] Tổng quan về ReactJS
-* [*] Kiến trúc Flux
+* [+] Tổng quan về ReactJS
+* [+] Kiến trúc Flux
 
 Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hiện. Nhóm check vào các chức năng đã làm
-* [*] Làm game 2048 theo kiến trúc Flux, sử dụng ReactJS
+* [+] Làm game 2048 theo kiến trúc Flux, sử dụng ReactJS
 
 ## Demo
 URL game: **https://group-1412529-1412439.herokuapp.com**
